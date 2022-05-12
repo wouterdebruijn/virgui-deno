@@ -37,16 +37,61 @@ class VirshConnector {
    * @returns True if the virtual machine was started, false otherwise.
    */
   public startVirtualMachine(vm: VirtualMachine) {
-    return this.runSimpleCommand(vm, ["start", vm.name]);
+    return this.runSimpleCommand(vm, ["start"]);
   }
 
   /**
    * Stop a virtual machine.
-   * @param vm The virtual machine to stop.
+   * @param vm The virtual machine to shutdown.
    * @returns True if the virtual machine was stopped, false otherwise.
    */
   public stopVirtualMachine(vm: VirtualMachine) {
-    return this.runSimpleCommand(vm, ["shutdown", vm.name]);
+    return this.runSimpleCommand(vm, ["shutdown"]);
+  }
+
+  /**
+   * Destroy (stop) a virtual machine
+   * @param vm The virtual machine to destroy.
+   * @returns True if the virtual machine was destroyed, false otherwise.
+   */
+  public destroyVirtualMachine(vm: VirtualMachine) {
+    return this.runSimpleCommand(vm, ["destroy"]);
+  }
+
+  /**
+   * Reboot a virtual machine
+   * @param vm The virtual machine to reboot.
+   * @returns True if the virtual machine was rebooted, false otherwise.
+   */
+  public rebootVirtualMachine(vm: VirtualMachine) {
+    return this.runSimpleCommand(vm, ["reboot"]);
+  }
+
+  /**
+   * Reset a virtual machine
+   * @param vm The virtual machine to reset.
+   * @returns True if the virtual machine was reset, false otherwise.
+   */
+  public resetVirtualMachine(vm: VirtualMachine) {
+    return this.runSimpleCommand(vm, ["reset"]);
+  }
+
+  /**
+   * Resume a virtual machine
+   * @param vm The virtual machine to resume.
+   * @returns True if the virtual machine was resumed, false otherwise.
+   */
+  public resumeVirtualMachine(vm: VirtualMachine) {
+    return this.runSimpleCommand(vm, ["resume"]);
+  }
+
+  /**
+   * Suspend a virtual machine
+   * @param vm The virtual machine to suspend.
+   * @returns True if the virtual machine was suspended, false otherwise.
+   */
+  public suspendVirtualMachine(vm: VirtualMachine) {
+    return this.runSimpleCommand(vm, ["suspend"]);
   }
 
   /**
@@ -62,6 +107,7 @@ class VirshConnector {
         "-c",
         this.qemuURL,
         ...command,
+        vm.name,
       ],
       stdout: "null",
     });

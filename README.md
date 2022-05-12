@@ -1,7 +1,10 @@
 # VirGUI
-VirGUI is a Virtual Machine Management GUI providing basic control over Virtual Machines running on libvirt
+
+VirGUI is a Virtual Machine Management GUI providing basic control over Virtual
+Machines running on libvirt
 
 ## Example
+
 ```
 import VirshConnection from "./VirshConnector.ts"
 

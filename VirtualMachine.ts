@@ -9,7 +9,7 @@ class VirtualMachine {
   ) {}
 
   public async start() {
-    if (this.state === "running") {
+    if (this.state !== "shut off") {
       return false;
     }
 
@@ -17,11 +17,51 @@ class VirtualMachine {
   }
 
   public async stop() {
-    if (this.state === "shut off") {
+    if (this.state !== "running") {
       return false;
     }
 
     return (await this.virshConnector.stopVirtualMachine(this));
+  }
+
+  public async destroy() {
+    if (this.state !== "running") {
+      return false;
+    }
+
+    return (await this.virshConnector.destroyVirtualMachine(this));
+  }
+
+  public async reboot() {
+    if (this.state !== "running") {
+      return false;
+    }
+
+    return (await this.virshConnector.rebootVirtualMachine(this));
+  }
+
+  public async reset() {
+    if (this.state !== "running") {
+      return false;
+    }
+
+    return (await this.virshConnector.resetVirtualMachine(this));
+  }
+
+  public async resume() {
+    if (this.state !== "paused") {
+      return false;
+    }
+
+    return (await this.virshConnector.resumeVirtualMachine(this));
+  }
+
+  public async suspend() {
+    if (this.state !== "running") {
+      return false;
+    }
+
+    return (await this.virshConnector.suspendVirtualMachine(this));
   }
 }
 
